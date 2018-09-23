@@ -3,9 +3,9 @@ import "./Navbar.css"
 
 const Navbar = () => 
 <nav>
-  <div className="nav-extended">
-  <div className="nav-content">
-  <h1 className="nav-title center">New York Times Article Scrubber</h1>
+  <div className="nav-bar">
+  <div className="navbar-nav">
+  <h1 className="navbar-brand navbar-text center">New York Times Article Scrubber</h1>
   </div>
   </div>
 </nav>;
