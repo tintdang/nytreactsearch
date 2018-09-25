@@ -25,14 +25,12 @@ class Articles extends Component {
 
   handleSubmitButton = event => {
     event.preventDefault();
-    console.log("Hello, you clicked me!")
     this.getArticles();
   }
 
   getArticles = () => {
     API.getArticles(this.state.topic, this.state.startYear, this.state.endYear)
       .then(results => {
-        console.log(results);
         this.setState({ results: results.data.response.docs })
       })
       .catch(err => console.log(err));
@@ -40,7 +38,6 @@ class Articles extends Component {
 
   saveArticle = id => {
     const selectedArticle = this.state.results.find(article => article._id === id)
-    console.log(selectedArticle)
     const savedArticle = {
       title: selectedArticle.headline.main,
       url: selectedArticle.web_url,
@@ -54,7 +51,6 @@ class Articles extends Component {
   loadSavedArticles = () => {
     API.getSavedArticles()
       .then(data => {
-        console.log(data)
         this.setState({
           savedArticle: data.data
         })
@@ -80,7 +76,7 @@ class Articles extends Component {
             <Input
               inputname={"Topic"}
               onChange={this.handleInputChange}
-              name="title"
+              name="topic"
               placeholder="Topic Name"
             />
             <Input
