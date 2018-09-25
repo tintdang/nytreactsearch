@@ -10,6 +10,13 @@ class Articles extends Component {
     endYear: ""
   }
 
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
+
   sayHello = event => {
     console.log("Hello, you clicked me!")
   }
@@ -22,13 +29,22 @@ class Articles extends Component {
           name={"Search"}
         >
           <Input
-            inputName={"Topic"}
+            inputname={"Topic"}
+            onChange={this.handleInputChange}
+            name="title"
+            placeholder="Topic Name"
           />
           <Input
-            inputName={"Start Year"}
+            inputname={"Start Year"}
+            onChange={this.handleInputChange}
+            name="startYear"
+            placeholder="Start Date"
           />
           <Input
-            inputName={"End Year"}
+            inputname={"End Year"}
+            onChange={this.handleInputChange}
+            name="endYear"
+            placeholder="End Date"
           />
           <FormBtn
             onClick={this.sayHello}
