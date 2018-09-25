@@ -2,7 +2,7 @@ import React from "react";
 import "./Card.css"
 
 export const Card = props => 
-<div className="card">
+<div className="card text-center">
     <div className="card-header">
         {props.name}
     </div>
