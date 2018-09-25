@@ -29,7 +29,13 @@ class Articles extends Component {
   }
 
   getArticles = () => {
-    API.getArticles(this.state.topic, this.state.startYear, this.state.endYear)
+    const searchQuery = {
+      searchTerm: this.state.topic,
+      startDate: this.state.startYear,
+      endDate: this.state.endYear
+    }
+
+    API.getArticles(searchQuery)
       .then(results => {
         this.setState({ results: results.data.response.docs })
       })
