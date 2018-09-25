@@ -3,6 +3,7 @@ import { Card } from "../../components/Card";
 import { Input, FormBtn } from "../../components/Form";
 import { List, ListItem } from "../../components/List";
 import API from "../../utils/API";
+import Wrapper from "../../components/Wrapper";
 class Articles extends Component {
   state = {
     results: [],
@@ -71,64 +72,67 @@ class Articles extends Component {
   render() {
     return (
       <div>
-        <Card
-          name={"Search"}
-        >
-          <Input
-            inputname={"Topic"}
-            onChange={this.handleInputChange}
-            name="title"
-            placeholder="Topic Name"
-          />
-          <Input
-            inputname={"Start Year"}
-            onChange={this.handleInputChange}
-            name="startYear"
-            placeholder="Start Date"
-          />
-          <Input
-            inputname={"End Year"}
-            onChange={this.handleInputChange}
-            name="endYear"
-            placeholder="End Date"
-          />
-          <FormBtn
-            onClick={this.handleSubmitButton}
+        <Wrapper>
+
+          <Card
+            name={"Search"}
           >
-            Submit
+            <Input
+              inputname={"Topic"}
+              onChange={this.handleInputChange}
+              name="title"
+              placeholder="Topic Name"
+            />
+            <Input
+              inputname={"Start Year"}
+              onChange={this.handleInputChange}
+              name="startYear"
+              placeholder="Start Date"
+            />
+            <Input
+              inputname={"End Year"}
+              onChange={this.handleInputChange}
+              name="endYear"
+              placeholder="End Date"
+            />
+            <FormBtn
+              onClick={this.handleSubmitButton}
+            >
+              Submit
           </FormBtn>
-        </Card>
+          </Card>
 
-        <Card
-          name={"Results"}
-        >
-          {/* print out all my results here */}
-          <List>
-            {this.state.results.map(article => (
-              <ListItem key={article._id}>
-                <div>
-                  {article.headline.main}<span><button onClick={() => this.saveArticle(article._id)}>Save</button></span>
-                  <p> Link: {article.web_url} </p>
-                  <p> Date: {article.pub_date} </p>
-                </div>
-              </ListItem>
-            ))}
-          </List>
-        </Card>
+          <Card
+            name={"Results"}
+          >
+            {/* print out all my results here */}
+            <List>
+              {this.state.results.map(article => (
+                <ListItem key={article._id}>
+                  <div>
+                    {article.headline.main}<span><button onClick={() => this.saveArticle(article._id)}>Save</button></span>
+                    <p> Link: {article.web_url} </p>
+                    <p> Date: {article.pub_date} </p>
+                  </div>
+                </ListItem>
+              ))}
+            </List>
+          </Card>
 
-        <Card
-          name={"Saved Articles"}
-        >
-          {/* Print all my saved articles here */}
-          <List>
-            {this.state.savedArticle.map(article => (
-              <ListItem key={article._id}>
-                {article.title} <span><button onClick={() => this.deleteArticle(article._id)}>Delete</button></span>
-              </ListItem>
-            ))}
-          </List>
+          <Card
+            name={"Saved Articles"}
+          >
+            {/* Print all my saved articles here */}
+            <List>
+              {this.state.savedArticle.map(article => (
+                <ListItem key={article._id}>
+                  {article.title} <span><button onClick={() => this.deleteArticle(article._id)}>Delete</button></span>
+                </ListItem>
+              ))}
+            </List>
 
-        </Card>
+          </Card>
+        </Wrapper>
       </div>
     )
   }
