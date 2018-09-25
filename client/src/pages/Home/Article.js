@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import { Card } from "../../components/Card"
-import { Input } from "../../components/Form"
+import { Input, FormBtn } from "../../components/Form"
 class Articles extends Component {
 
+  sayHello = event => {
+    console.log("Hello, you clicked me!")
+  }
 
   render() {
     return (
@@ -20,7 +23,11 @@ class Articles extends Component {
           <Input
             inputName={"End Year"}
           />
-
+          <FormBtn
+            onClick={this.sayHello}
+          >
+            Submit
+          </FormBtn>
         </Card>
 
         <h1>Put in my Result box here</h1>
