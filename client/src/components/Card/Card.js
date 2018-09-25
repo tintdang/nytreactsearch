@@ -8,7 +8,6 @@ export const Card = props =>
     </div>
     <div className="container">
         <div className="card-body">
-            <h1>{props.inputName}</h1>
             {props.children}
         </div>
     </div>

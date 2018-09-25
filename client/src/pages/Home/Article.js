@@ -8,16 +8,33 @@ class Articles extends Component {
     return (
       <div>
         <h1>Put in my Search box here</h1>
-        <Card 
-        name={"Search"}
-        inputName={"Topic"}
+        <Card
+          name={"Search"}
         >
-          <Input />
+          <Input
+            inputName={"Topic"}
+          />
+          <Input
+            inputName={"Start Year"}
+          />
+          <Input
+            inputName={"End Year"}
+          />
+
         </Card>
 
-
         <h1>Put in my Result box here</h1>
+        <Card
+          name={"Results"}
+        >
+          {/* print out all my results here */}
+        </Card>
         <h1>Put in my Saved Article box here</h1>
+        <Card
+          name={"Saved Articles"}
+        >
+
+        </Card>
       </div>
     )
   }
