@@ -10,7 +10,10 @@ export default {
     url += `&api-key=254e96d813da4da3b00c09ba7b3ecd08`
     console.log(url)
     return axios.get(url)
+  },
+  saveArticle: (savedArticle) => {
+    return axios.post("/api/article");
   }
-}
+};
 
 // http://api.nytimes.com/svc/search/v2/articlesearch.json?q=new+york+times&page=2&sort=oldest&api-key=254e96d813da4da3b00c09ba7b3ecd08

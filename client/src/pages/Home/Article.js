@@ -27,11 +27,21 @@ class Articles extends Component {
 
   getArticles = () => {
     API.getArticles(this.state.topic, this.state.startYear, this.state.endYear)
-    .then(results => {
-      console.log(results);
-      this.setState({results: results.data.response.docs})
+      .then(results => {
+        console.log(results);
+        this.setState({ results: results.data.response.docs })
+      })
+      .catch(err => console.log(err));
+  }
+
+  saveArticle = event => {
+    event.preventDefault();
+    API.saveArticle({
+
     })
-    .catch(err => console.log(err));
+      .then(res => this.loadSavedArticles)
+      .catch(err => console.log(err));
+
   }
 
   render() {
@@ -74,7 +84,11 @@ class Articles extends Component {
           <List>
             {this.state.results.map(article => (
               <ListItem key={article._id}>
-                {article.headline.main}<span><button>Save</button></span>
+                <div>
+                  {article.headline.main}<span><button>Save</button></span>
+                  <p> Link: {article.web_url} </p>
+                  <p> Date: {article.pub_date} </p>
+                </div>
               </ListItem>
             ))}
           </List>
