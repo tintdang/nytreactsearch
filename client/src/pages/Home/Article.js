@@ -2,6 +2,13 @@ import React, { Component } from "react";
 import { Card } from "../../components/Card"
 import { Input, FormBtn } from "../../components/Form"
 class Articles extends Component {
+  state = {
+    results: [],
+    savedArticle: [],
+    topic: "",
+    startYear: "",
+    endYear: ""
+  }
 
   sayHello = event => {
     console.log("Hello, you clicked me!")
