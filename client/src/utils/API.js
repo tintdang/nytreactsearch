@@ -11,8 +11,14 @@ export default {
     console.log(url)
     return axios.get(url)
   },
+  getSavedArticles: () => {
+    return axios.get("/api/saved")
+  },
   saveArticle: (savedArticle) => {
-    return axios.post("/api/article");
+    return axios.post("/api/saved", savedArticle);
+  },
+  deleteArticle: (id) => {
+    return axios.delete("api/saved/" + id)
   }
 };
 

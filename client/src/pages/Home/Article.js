@@ -34,14 +34,27 @@ class Articles extends Component {
       .catch(err => console.log(err));
   }
 
-  saveArticle = event => {
-    event.preventDefault();
-    API.saveArticle({
-
-    })
+  saveArticle = id => {
+    const selectedArticle = this.state.results.find(article => article._id === id)
+    console.log(selectedArticle)
+    const savedArticle = {
+      title: selectedArticle.headline.main,
+      url: selectedArticle.web_url,
+      date: selectedArticle.pub_date
+    }
+    API.saveArticle(savedArticle)
       .then(res => this.loadSavedArticles)
       .catch(err => console.log(err));
+  }
 
+  loadSavedArticles = () => {
+    API.getSavedArticles()
+      .then(data => {
+        console.log(data)
+        this.setState({
+          savedArticle: data.data
+        })
+      })
   }
 
   render() {
@@ -85,7 +98,7 @@ class Articles extends Component {
             {this.state.results.map(article => (
               <ListItem key={article._id}>
                 <div>
-                  {article.headline.main}<span><button>Save</button></span>
+                  {article.headline.main}<span><button onClick={() => this.saveArticle(article._id)}>Save</button></span>
                   <p> Link: {article.web_url} </p>
                   <p> Date: {article.pub_date} </p>
                 </div>
