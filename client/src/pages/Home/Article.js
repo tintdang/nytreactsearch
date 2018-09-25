@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import { Card } from "../../components/Card"
-import { Input, FormBtn } from "../../components/Form"
+import { Card } from "../../components/Card";
+import { Input, FormBtn } from "../../components/Form";
+import { List, ListItem } from "../../components/List";
+import API from "../../utils/API";
 class Articles extends Component {
   state = {
     results: [],
@@ -17,8 +19,19 @@ class Articles extends Component {
     });
   };
 
-  sayHello = event => {
+  handleSubmitButton = event => {
+    event.preventDefault();
     console.log("Hello, you clicked me!")
+    this.getArticles();
+  }
+
+  getArticles = () => {
+    API.getArticles(this.state.topic, this.state.startYear, this.state.endYear)
+    .then(results => {
+      console.log(results);
+      this.setState({results: results.data.response.docs})
+    })
+    .catch(err => console.log(err));
   }
 
   render() {
@@ -47,7 +60,7 @@ class Articles extends Component {
             placeholder="End Date"
           />
           <FormBtn
-            onClick={this.sayHello}
+            onClick={this.handleSubmitButton}
           >
             Submit
           </FormBtn>
@@ -58,11 +71,26 @@ class Articles extends Component {
           name={"Results"}
         >
           {/* print out all my results here */}
+          <List>
+            {this.state.results.map(article => (
+              <ListItem key={article._id}>
+                {article.headline.main}<span><button>Save</button></span>
+              </ListItem>
+            ))}
+          </List>
         </Card>
         <h1>Put in my Saved Article box here</h1>
         <Card
           name={"Saved Articles"}
         >
+          {/* Print all my saved articles here */}
+          <List>
+            {this.state.savedArticle.map(article => (
+              <ListItem key={article._id}>
+                {article.title}
+              </ListItem>
+            ))}
+          </List>
 
         </Card>
       </div>
