@@ -60,7 +60,6 @@ class Articles extends Component {
   render() {
     return (
       <div>
-        <h1>Put in my Search box here</h1>
         <Card
           name={"Search"}
         >
@@ -89,7 +88,6 @@ class Articles extends Component {
           </FormBtn>
         </Card>
 
-        <h1>Put in my Result box here</h1>
         <Card
           name={"Results"}
         >
@@ -106,7 +104,7 @@ class Articles extends Component {
             ))}
           </List>
         </Card>
-        <h1>Put in my Saved Article box here</h1>
+
         <Card
           name={"Saved Articles"}
         >
