@@ -3,8 +3,7 @@ const articleController = require("../../controllers/articleController");
 
 // equals to api/article/
 router.route("/")
-  .get()
-  .post();
+  .get(articleController.findAll);
 
 // equals to api/article/:id
 
