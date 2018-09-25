@@ -12,6 +12,9 @@ class Articles extends Component {
     endYear: ""
   }
 
+  componentDidMount() {
+    this.loadSavedArticles()
+  }
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
@@ -43,7 +46,7 @@ class Articles extends Component {
       date: selectedArticle.pub_date
     }
     API.saveArticle(savedArticle)
-      .then(res => this.loadSavedArticles)
+      .then(res => this.loadSavedArticles())
       .catch(err => console.log(err));
   }
 
@@ -55,6 +58,14 @@ class Articles extends Component {
           savedArticle: data.data
         })
       })
+  }
+
+  deleteArticle = id => {
+    API.deleteArticle(id)
+      .then(data => {
+        this.loadSavedArticles()
+      })
+      .catch(err => console.log(err));
   }
 
   render() {
@@ -112,7 +123,7 @@ class Articles extends Component {
           <List>
             {this.state.savedArticle.map(article => (
               <ListItem key={article._id}>
-                {article.title}
+                {article.title} <span><button onClick={() => this.deleteArticle(article._id)}>Delete</button></span>
               </ListItem>
             ))}
           </List>
