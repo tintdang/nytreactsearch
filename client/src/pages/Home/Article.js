@@ -112,7 +112,7 @@ class Articles extends Component {
               {this.state.results.map(article => (
                 <ListItem key={article._id}>
                   <div>
-                    {article.headline.main}<span><button onClick={() => this.saveArticle(article._id)}>Save</button></span>
+                    {article.headline.main}<span><button style={{float:"right"}} onClick={() => this.saveArticle(article._id)}>Save</button></span>
                     <p> Link: {article.web_url} </p>
                     <p> Date: {article.pub_date} </p>
                   </div>
